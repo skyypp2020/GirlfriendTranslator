@@ -60,3 +60,11 @@
 3.  **建模 & 評估**：解釋 Streamlit + aisuite 的技術架構。
 4.  **部署**：提供啟動指令。
 5.  **檔案結構**：列出專案目錄樹狀圖與各檔案用途。
+
+## 2025-12-16 23:39:25
+**User:** 幫我分析程式碼的哪個部分有使用到 aisuite
+**AI:** 在 `app.py` 中，`aisuite` 主要用於與 LLM (Large Language Model) 進行溝通。
+具體使用到的部分如下：
+1.  **導入套件** (第 2 行)：`import aisuite as ai`
+2.  **建立客戶端** (第 34 行)：`client = ai.Client()`，這是初始化 `aisuite` 的關鍵步驟。
+3.  **發送請求** (第 41-44 行)：利用 `client.chat.completions.create(...)` 將 Prompt 送出並取得 AI 回覆。
