@@ -1,6 +1,10 @@
 # 🦁 男友求生翻譯機 (Girlfriend Translator)
 
+
+Demosite：https://girlfriendtranslator-9ygf6wv4sestttyidkurwe.streamlit.app/
+
 本專案採用 **CRISP-DM (Cross-Industry Standard Process for Data Mining)** 跨產業資料探勘標準流程進行開發與文件撰寫。
+
 
 ---
 

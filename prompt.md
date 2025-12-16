@@ -68,3 +68,8 @@
 1.  **導入套件** (第 2 行)：`import aisuite as ai`
 2.  **建立客戶端** (第 34 行)：`client = ai.Client()`，這是初始化 `aisuite` 的關鍵步驟。
 3.  **發送請求** (第 41-44 行)：利用 `client.chat.completions.create(...)` 將 Prompt 送出並取得 AI 回覆。
+
+## 2025-12-16 23:50:44
+**User:** 在readme.md中，前面加上Demosite：https://girlfriendtranslator-9ygf6wv4sestttyidkurwe.streamlit.app/
+**AI:** 收到。我已經將 Demosite 連結加入到 `README.md` 的最上方了。
+您可以直接開啟 `README.md` 確認。
