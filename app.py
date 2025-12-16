@@ -8,20 +8,27 @@ load_dotenv()
 
 # Page configuration
 st.set_page_config(
-    page_title="員瑛式思考產生器",
-    page_icon="🌈",
+    page_title="男友求生翻譯機",
+    page_icon="🦁",
     layout="centered"
 )
 
 # Function to generate reply
 def reply(prompt, provider="groq", model="openai/gpt-oss-120b"):
     system = """
-    請用台灣習慣的中文來寫這段 po 文：
-    請用員瑛式思考, 也就是什麼都正向思維任何使用者寫的事情,
-    用我的第一人稱、社群媒體 po 文的口吻說一次,
-    說為什麼這是一件超幸運的事, 並且以「完全是 Lucky Vicky 呀!」結尾。
-    可以適度的加上 emoji。
-    """
+    你是一個「求生型男友翻譯 AI」。
+
+    請將女朋友的話翻譯成：
+    - 官方說法
+    - 內心 OS
+    - 真正意思
+    - 男友存活率最高的回覆
+
+    女朋友說：
+    「{user_input}」
+
+    請用幽默但寫實的語氣。
+    """.replace("{user_input}", prompt)
     
     try:
         client = ai.Client()
@@ -41,13 +48,14 @@ def reply(prompt, provider="groq", model="openai/gpt-oss-120b"):
         return f"發生錯誤: {str(e)}\n請確認您的 API Key 是否正確設定。"
 
 # UI Layout
-st.title("꒰*ˊᵕˋ꒱ 員瑛式思考產生器 Lucky Vicky 🌈")
+st.title("🦁 男友求生翻譯機")
 st.markdown("""
-請輸入一件你覺得超小事，甚至有點倒楣的事，讓我幫你用員瑛式思考，超正向的方式重新詮釋！
+女友說的話，往往不是表面上的意思...
+輸入她說的一句話，讓 AI 幫你解析 **真正意思** 與 **最佳回覆**，提高存活率！
 """)
 
 # Input section
-user_input = st.text_area("今天發生的事情是…", placeholder="例如：今天出門就下大雨, 可是忘了帶傘...", height=100)
+user_input = st.text_area("女朋友說：", placeholder="例如：沒事，你去忙吧...", height=100)
 
 # Sidebar for potentially changing models (Optional but good for flexibility)
 with st.sidebar:
@@ -67,7 +75,7 @@ with st.sidebar:
     key_var_map = {
         "groq": "GROQ_API_KEY",
         "openai": "OPENAI_API_KEY",
-        "mistral": "MISTRAL_API_KEY" # aisuite might expect specific env vars, usually it's PROVIDER_API_KEY style or specific ones
+        "mistral": "MISTRAL_API_KEY"
     }
     
     if os.getenv(key_var_map.get(provider)):
@@ -76,13 +84,11 @@ with st.sidebar:
         st.warning(f"未偵測到 {provider} API Key，請檢查 .env 檔案")
 
 # Button and Output
-if st.button("Lucky Vicky 魔法! ✨", type="primary"):
+if st.button("翻譯 (求生模式啟動) 🚀", type="primary"):
     if user_input:
-        with st.spinner("正在施展魔法中..."):
+        with st.spinner("正在分析女友情緒..."):
             result = reply(user_input, provider, model)
-            st.subheader("📣 員瑛式貼文")
-            st.success(result)
-            st.balloons()
+            st.subheader("翻譯結果")
+            st.markdown(result)
     else:
-        st.warning("請先輸入發生了什麼事喔！")
-
+        st.warning("請先輸入女朋友說的話喔！")
